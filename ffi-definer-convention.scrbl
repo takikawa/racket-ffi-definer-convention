@@ -51,3 +51,24 @@ at syntax phase (phase level 1).
 (get-milliseconds)
 ]
 }
+
+@deftogether[(@defproc[(convention:hyphen->underscore [id identifier?])
+                       identifier?]
+              @defproc[(convention:hyphen->camelcase [id identifier?])
+                       identifier?]
+              @defproc[(convention:prefix-scheme [id identifier?])
+                       identifier?])]{
+
+These functions are intended for use with the @racket[#:make-c-id]
+keyword argument for @racket[define-ffi-definer]. They encode common
+naming conventions for foreign functions.
+
+All of these functions are provided at syntax phase (phase level 1).
+
+@examples[#:eval ev
+(begin-for-syntax
+  (displayln (convention:hyphen->underscore #'hello-world))
+  (displayln (convention:hyphen->camelcase #'hello-world))
+  (displayln (convention:prefix-scheme #'hello_world)))
+]
+}
