@@ -8,20 +8,11 @@
                      racket/string
                      racket/syntax))
 
-(begin-for-syntax
-  (define (prefix-scheme id)
-    (format-id id "scheme_~a" (syntax-e id)))
-
-  (define (hyphen->underscore id)
-    (format-id
-     id
-     (string-replace (symbol->string (syntax-e id)) "-" "_"))))
-
-(define-ffi-definer define-rkt-1 #f #:make-c-id prefix-scheme)
-(define-ffi-definer define-rkt-2 #f #:make-c-id hyphen->underscore)
+(define-ffi-definer define-rkt-1 #f #:make-c-id convention:prefix-scheme)
+(define-ffi-definer define-rkt-2 #f #:make-c-id convention:hyphen->underscore)
 (define-ffi-definer define-rkt-3 #f
-                    #:make-c-id (compose prefix-scheme
-                                         hyphen->underscore))
+                    #:make-c-id (compose convention:prefix-scheme
+                                         convention:hyphen->underscore))
 
 ;; test name conventions
 (define-rkt-1 get_milliseconds (_fun -> _int))

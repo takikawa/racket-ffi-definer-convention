@@ -5,9 +5,11 @@
 (require ffi/unsafe
          (prefix-in orig: ffi/unsafe/define)
          (for-syntax racket/base
-                     syntax/parse))
+                     syntax/parse
+                     "conventions.rkt"))
 
-(provide define-ffi-definer)
+(provide define-ffi-definer
+         (for-syntax (all-from-out "conventions.rkt")))
 
 (begin-for-syntax
   (define-splicing-syntax-class options
