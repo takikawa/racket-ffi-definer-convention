@@ -55,11 +55,11 @@
            (orig:define-ffi-definer
             ?temp-define ?ffi-lib-expr
             #,@(if (attribute ?opts.core-define-id)
-                   (list #'?opts.core-define-id)
+                   (list #'#:define #'?opts.core-define-id)
                    (list))
             #,@(if (attribute ?opts.provide-id)
-                   (list #'?opts.provide-id)
+                   (list #'#:provide #'?opts.provide-id)
                    (list))
             #,@(if (attribute ?opts.default-make-fail-expr)
-                   (list #'?opts.default-make-fail-expr)
+                   (list #'#:default-make-fail #'?opts.default-make-fail-expr)
                    (list))))))]))
